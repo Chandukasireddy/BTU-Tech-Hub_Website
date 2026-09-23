@@ -402,7 +402,7 @@ export default function MeetupSection() {
           <div className="text-center mb-12">
             <span className="mono-tag text-cyber-blue">02 — Meetup Timeline</span>
             <h2 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight">
-              All <span className="gradient-text">20 Meetups</span> in One Place
+              All <span className="gradient-text">25 Meetups</span> in One Place
             </h2>
           </div>
         </FadeIn>
