@@ -247,7 +247,7 @@ export default function PhotosSection() {
         grouped[meetupNumber] = [];
       }
 
-      const thumbUrl = typeof url === "string" ? url : (url as any).default;
+      const thumbUrl = typeof url === "string" ? url : (url as { default?: string })?.default ?? "";
 
       grouped[meetupNumber].push({
         key: path,

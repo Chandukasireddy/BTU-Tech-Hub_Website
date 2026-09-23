@@ -1,7 +1,8 @@
 {
-  "name": "vite_react_shadcn_ts",
-  "private": true,
-  "version": "0.0.0",
+  "name": "btu-tech-spark",
+  "version": "1.0.0",
+  "description": "Official community platform and meetup tracker for BTU Tech Spark at BTU Cottbus-Senftenberg.",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

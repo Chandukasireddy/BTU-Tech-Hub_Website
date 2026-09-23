@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parseMeetupDateTime } from "../components/MeetupSection";
+import { parseMeetupDateTime } from "../lib/meetupParser";
 
 describe("parseMeetupDateTime", () => {
   it("parses single line date and time with range", () => {

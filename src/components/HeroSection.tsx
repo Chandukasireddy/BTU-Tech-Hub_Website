@@ -135,7 +135,7 @@ export default function HeroSection() {
         >
           {[
             { icon: <Users className="w-4 h-4 text-cyber-blue" />, label: "Members", value: "70+" },
-            { icon: <Calendar className="w-4 h-4 text-cyber-purple" />, label: "Meetups Held", value: "25" },
+            { icon: <Calendar className="w-4 h-4 text-cyber-purple" />, label: "Meetups Held", value: "26+" },
             { icon: <span className="text-cyber-green text-base">🔥</span>, label: "Weekly Sundays", value: "14:00" },
           ].map((stat, i) => (
             <div key={i} className="flex items-center gap-2">
