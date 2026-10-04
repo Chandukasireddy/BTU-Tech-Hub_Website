@@ -44,7 +44,7 @@ async function walk(dir) {
     if (entry.isDirectory()) {
       if (/meetup-?\d+/i.test(entry.name)) {
         const files = await fs.readdir(full);
-        const imgFiles = files.filter((f) => /\.(jpe?g|png|webp)$/i.test(f));
+        const imgFiles = files.filter((f) => /\.(jpe?g|png|webp)$/i.test(f) && !/banner/i.test(f));
         if (imgFiles.length === 0) continue;
         const thumbsDir = path.join(full, 'thumbs');
         await fs.mkdir(thumbsDir, { recursive: true });
