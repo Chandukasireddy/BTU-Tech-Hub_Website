@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useMemo, useRef, useState, useEffect, useCallback } from "react";
-import { useLocation } from "react-router-dom";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { Calendar, ChevronLeft, ChevronRight, Clock, ExternalLink, MapPin, Navigation } from "lucide-react";
 import { useCountdown } from "@/hooks/useCountdown";
 import { Button } from "@/components/ui/button";
@@ -252,7 +251,6 @@ function DigitBlock({ value, label }: { value: number; label: string }) {
 }
 
 export default function MeetupSection() {
-  const location = useLocation();
   const selectedButtonRef = useRef<HTMLButtonElement | null>(null);
   const [selectedMeetupIndex, setSelectedMeetupIndex] = useState(-1); // -1 means use default (latest)
 
@@ -291,30 +289,48 @@ export default function MeetupSection() {
     );
   }, [meetups]);
 
-  // Helper to extract meetup number or filename from hash / pathname (e.g. #meetup-20, /meetup-20, #20)
-  const getMeetupIndexFromLocation = useCallback(() => {
-    const raw = `${location.pathname} ${location.hash}`;
-    const match = raw.match(/meetup[-_/]?(\d+)/i) || (location.hash ? location.hash.match(/^#(\d+)$/) : null);
-    if (match) {
-      const num = parseInt(match[1], 10);
-      const idx = meetups.findIndex((m) => m.filenameNumber === num);
-      if (idx !== -1) return idx;
-    }
-    return -1;
-  }, [location.pathname, location.hash, meetups]);
-
-  // Set selected index based on URL hash/path or fallback to highest numbered meetup
+  // Set selected index based on URL hash/path on mount or on browser navigation
   useEffect(() => {
-    const matchedIndex = getMeetupIndexFromLocation();
-    if (matchedIndex !== -1) {
-      setSelectedMeetupIndex(matchedIndex);
-    } else if (selectedMeetupIndex === -1 && highestNumberedMeetup) {
-      const indexOfHighest = meetups.findIndex(
-        (m) => m.filenameNumber === highestNumberedMeetup.filenameNumber
-      );
-      setSelectedMeetupIndex(indexOfHighest !== -1 ? indexOfHighest : 0);
-    }
-  }, [getMeetupIndexFromLocation, meetups, highestNumberedMeetup, selectedMeetupIndex]);
+    const syncMeetupFromUrl = () => {
+      const hash = window.location.hash;
+      const pathname = window.location.pathname;
+      const raw = `${pathname} ${hash}`;
+      const match =
+        raw.match(/meetup[-_/]?(\d+)/i) || (hash ? hash.match(/^#(\d+)$/) : null);
+
+      if (match) {
+        const num = parseInt(match[1], 10);
+        const idx = meetups.findIndex((m) => m.filenameNumber === num);
+        if (idx !== -1) {
+          setSelectedMeetupIndex(idx);
+          return;
+        }
+      }
+
+      // Default to highest numbered meetup if not specified and nothing selected
+      setSelectedMeetupIndex((current) => {
+        if (current === -1 && highestNumberedMeetup) {
+          const indexOfHighest = meetups.findIndex(
+            (m) => m.filenameNumber === highestNumberedMeetup.filenameNumber
+          );
+          return indexOfHighest !== -1 ? indexOfHighest : 0;
+        }
+        return current;
+      });
+    };
+
+    // Run on mount
+    syncMeetupFromUrl();
+
+    // Listen to browser back/forward or external hash changes
+    window.addEventListener("hashchange", syncMeetupFromUrl);
+    window.addEventListener("popstate", syncMeetupFromUrl);
+
+    return () => {
+      window.removeEventListener("hashchange", syncMeetupFromUrl);
+      window.removeEventListener("popstate", syncMeetupFromUrl);
+    };
+  }, [meetups, highestNumberedMeetup]);
 
   // Use highest numbered meetup if not manually selected
   const defaultHighestIndex = highestNumberedMeetup
@@ -352,7 +368,7 @@ export default function MeetupSection() {
     setSelectedMeetupIndex(index);
     const target = meetups[index];
     if (target) {
-      window.history.replaceState(null, "", `#${target.filename}`);
+      window.history.replaceState(null, "", `/#${target.filename}`);
     }
   };
 
