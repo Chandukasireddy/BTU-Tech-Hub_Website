@@ -2,12 +2,12 @@
 
 **BTU Tech Hub**
 
-**Sunday, October 11** ,  **2:24 PM - 5:45 PM** **IKMZ - BTU Cottbus-Senftenberg** Cottbus, Brandenburg
+**Sunday, October 11** ,  **2:45 PM - 5:45 PM** **IKMZ - BTU Cottbus-Senftenberg** Cottbus, Brandenburg
 
 **Upcoming Event**
 
 - [Join Discord for Updates](https://discord.gg/NfPSxZKUa8)
-- [Add to Calendar]
+- [Add to Calendar](https://luma.com/c9gi9npe?tk=NqrmA4)
 
 ## About Event
 
