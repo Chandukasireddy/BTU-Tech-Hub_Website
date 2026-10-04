@@ -25,28 +25,27 @@ Meetup #26 marked our biggest and most energetic session to date, setting a new 
 
 This session stood out for its rich multidisciplinary diversity—bringing together students from Physics, Aeronautical Engineering, Computer Science, and various engineering disciplines. With numerous first-time attendees, the room was filled with fresh perspectives, vibrant discussions, and collaborative energy.
 
-### Exploring Multimodal LLMs & GPT Architectures
+### Exploring Multimodal LLMs
 We kicked off the meetup with a deep dive into modern Large Language Model (LLM) interaction paradigms and architectural capabilities:
 - **Text-to-Text:** Foundational language generation, reasoning prompts, and chain-of-thought workflows.
 - **Image-to-Text:** Vision-language models (VLMs) interpreting visual data, charts, and spatial relationships.
 - **Text-to-Voice:** Speech synthesis, expressive voice generation, and audio synthesis pipelines.
 - **Voice-to-Voice:** Real-time, full-duplex multimodal conversational models enabling natural verbal dialogues.
 
-We then unpacked the core mechanics of Generative Pre-trained Transformers (GPTs), exploring how attention mechanisms work under the hood and examining lightweight, open, and specialized GPT-like architectures that make local experimentation accessible and efficient.
 
-### Hands-On Gamified AI Project
+### Hands-On JEV Project
 Moving straight from architectural foundations to hands-on implementation, everyone built an interactive project based on Chandu's Medium guide:
 - **Project Article:** [JEV-Like Model: Learn with Gamified Project](https://medium.com/@chandukasireddy02/jev-like-model-learn-with-gamified-project-3044b83db92f)
 
 Participants built and customized gamified environments to benchmark model behavior and test interactive capabilities in real time:
-- Designing and adapting classic games such as **Nokia Snake**, **Hangman**, trivia challenges, and text-based interactive puzzles.
+- Designing and adapting classic games such as **Nokia Snake**, **Hangman**, **Pac Man**, and text-based interactive puzzles.
 - Connecting game logic and prompt loops to explore how models reason, generate adaptive content, and respond to dynamic constraints.
 
 ## Presentations by Participants
 
 Every single participant engaged in live building and participated in our showcase session:
 - **Individual & Team Demos:** Each participant took the floor for a few minutes to showcase their custom game, demonstrate model interactions, and explain their architectural choices.
-- **First-Time Presenters:** New attendees from diverse non-CS streams (including Physics and Aeronautical Engineering) built complete working prototypes and delivered remarkably confident, insightful presentations.
+- **First-Time Presenters:** New attendees from diverse non-CS streams built complete working prototypes and delivered remarkably confident, insightful presentations.
 - **Collaborative Feedback:** The room exchanged ideas on prompt strategies, model edge cases, and future extensions into autonomous agent systems.
 
 ---
@@ -65,3 +64,5 @@ Platz der Deutsche Einheit 2, 03044 Cottbus, Germany
 ## Hosted By
 
 **Chandrakiran Reddy Kasireddy**
+**Srihitha Jindam**
+**Ashok Reddy Kesari**
