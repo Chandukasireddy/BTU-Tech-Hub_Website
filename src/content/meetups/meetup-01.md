@@ -28,14 +28,6 @@ Connect Learn Build
 **Overview:** Kickoff meetup focused on building the BTU Tech Hub community and connecting students.
 Venue note: Initial session held on IKMZ 7th Floor.
 
-BTU IKMZ Library Basement -1 floor cabins
-
-Instructions to location: https://btu.mapongo.de/viewer?p=1&b=1&f=13&l=349&lang=en
-
-Join Discord for updates: https://discord.gg/A6DJSsntT
-
-Note: The meetup happens on every Sunday 2PM at IKMZ Cottbus (any changes will be discussed on discord)
-
 ## Location
 
 **IKMZ - BTU Cottbus-Senftenberg**  

@@ -54,13 +54,6 @@ Every single participant engaged in live building and participated in our showca
 - **First-Time Presenters:** New attendees from diverse non-CS streams built complete working prototypes and delivered remarkably confident, insightful presentations.
 - **Collaborative Feedback:** The room exchanged ideas on prompt strategies, model edge cases, and future extensions into autonomous agent systems.
 
----
-
-**Location Details:** BTU IKMZ Library Basement '-1' floor cabins  
-[Location Instructions](https://btu.mapongo.de/viewer?p=1&b=1&f=13&l=349&lang=en)
-
-**Note:** The meetup happens every Sunday at 2:00 PM at IKMZ Cottbus. Any last-minute updates regarding rooms or topics are shared on Discord.
-
 ## Location
 
 **IKMZ - BTU Cottbus-Senftenberg**  

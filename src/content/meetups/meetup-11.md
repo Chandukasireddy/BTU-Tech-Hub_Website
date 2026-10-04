@@ -28,14 +28,6 @@ Connect Learn Build
 **Overview:** Part of the 11-15 series focused on refining agent workflows and architecture patterns.
 Series theme: exploration of local LLM hosting with Ollama.
 
-BTU IKMZ Library Basement -1 floor cabins
-
-Instructions to location: https://btu.mapongo.de/viewer?p=1&b=1&f=13&l=349&lang=en
-
-Join Discord for updates: https://discord.gg/A6DJSsntT
-
-Note: The meetup happens on every Sunday 2PM at IKMZ Cottbus (any changes will be discussed on discord)
-
 ## Location
 
 **IKMZ - BTU Cottbus-Senftenberg**  
