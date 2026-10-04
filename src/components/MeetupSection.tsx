@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useRef, useState, useEffect, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import { Calendar, ChevronLeft, ChevronRight, Clock, ExternalLink, MapPin, Navigation } from "lucide-react";
 import { useCountdown } from "@/hooks/useCountdown";
 import { Button } from "@/components/ui/button";
@@ -251,6 +252,8 @@ function DigitBlock({ value, label }: { value: number; label: string }) {
 }
 
 export default function MeetupSection() {
+  const location = useLocation();
+  const selectedButtonRef = useRef<HTMLButtonElement | null>(null);
   const [selectedMeetupIndex, setSelectedMeetupIndex] = useState(-1); // -1 means use default (latest)
 
   const meetups = useMemo(
@@ -288,19 +291,49 @@ export default function MeetupSection() {
     );
   }, [meetups]);
 
-  // Set default index to highest numbered meetup on mount
+  // Helper to extract meetup number or filename from hash / pathname (e.g. #meetup-20, /meetup-20, #20)
+  const getMeetupIndexFromLocation = useCallback(() => {
+    const raw = `${location.pathname} ${location.hash}`;
+    const match = raw.match(/meetup[-_/]?(\d+)/i) || (location.hash ? location.hash.match(/^#(\d+)$/) : null);
+    if (match) {
+      const num = parseInt(match[1], 10);
+      const idx = meetups.findIndex((m) => m.filenameNumber === num);
+      if (idx !== -1) return idx;
+    }
+    return -1;
+  }, [location.pathname, location.hash, meetups]);
+
+  // Set selected index based on URL hash/path or fallback to highest numbered meetup
   useEffect(() => {
-    if (selectedMeetupIndex === -1 && highestNumberedMeetup) {
-      const indexOfHighest = meetups.findIndex(m => m.filenameNumber === highestNumberedMeetup.filenameNumber);
+    const matchedIndex = getMeetupIndexFromLocation();
+    if (matchedIndex !== -1) {
+      setSelectedMeetupIndex(matchedIndex);
+    } else if (selectedMeetupIndex === -1 && highestNumberedMeetup) {
+      const indexOfHighest = meetups.findIndex(
+        (m) => m.filenameNumber === highestNumberedMeetup.filenameNumber
+      );
       setSelectedMeetupIndex(indexOfHighest !== -1 ? indexOfHighest : 0);
     }
-  }, [meetups, highestNumberedMeetup, selectedMeetupIndex]);
+  }, [getMeetupIndexFromLocation, meetups, highestNumberedMeetup, selectedMeetupIndex]);
 
   // Use highest numbered meetup if not manually selected
-  const defaultHighestIndex = highestNumberedMeetup ? meetups.findIndex(m => m.filenameNumber === highestNumberedMeetup.filenameNumber) : 0;
+  const defaultHighestIndex = highestNumberedMeetup
+    ? meetups.findIndex((m) => m.filenameNumber === highestNumberedMeetup.filenameNumber)
+    : 0;
   const displayIndex = selectedMeetupIndex === -1 ? defaultHighestIndex : selectedMeetupIndex;
   const selectedMeetup = meetups[displayIndex] ?? meetups[0];
   const meetupSelectorItems = meetups;
+
+  // Scroll active meetup pill into view horizontally
+  useEffect(() => {
+    if (selectedButtonRef.current) {
+      selectedButtonRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [displayIndex]);
 
   const meetupDateTime = useMemo(() => {
     if (!selectedMeetup) return null;
@@ -315,13 +348,20 @@ export default function MeetupSection() {
 
   const countdown = useCountdown(meetupDateTime?.start);
 
-  const navigateMeetup = (direction: "prev" | "next") => {
-    if (direction === "prev") {
-      setSelectedMeetupIndex((current) => Math.max(0, current - 1));
-      return;
+  const handleSelectMeetup = (index: number) => {
+    setSelectedMeetupIndex(index);
+    const target = meetups[index];
+    if (target) {
+      window.history.replaceState(null, "", `#${target.filename}`);
     }
+  };
 
-    setSelectedMeetupIndex((current) => Math.min(meetups.length - 1, current + 1));
+  const navigateMeetup = (direction: "prev" | "next") => {
+    const nextIndex =
+      direction === "prev"
+        ? Math.max(0, displayIndex - 1)
+        : Math.min(meetups.length - 1, displayIndex + 1);
+    handleSelectMeetup(nextIndex);
   };
 
   return (
@@ -373,20 +413,24 @@ export default function MeetupSection() {
 
               <div className="mt-4 overflow-x-auto">
                 <div className="flex gap-2 min-w-max pb-1">
-                  {meetupSelectorItems.map((meetup) => (
-                    <button
-                      key={meetup.index}
-                      type="button"
-                      onClick={() => setSelectedMeetupIndex(meetup.index)}
-                      className={`rounded-lg px-3 py-2 text-sm font-medium transition-all border ${
-                        displayIndex === meetup.index
-                          ? "border-cyber-blue/60 bg-cyber-blue/10 text-cyber-blue"
-                          : "border-white/10 bg-background/30 text-muted-foreground hover:text-foreground hover:border-white/20"
-                      }`}
-                    >
-                      {meetup.filename}
-                    </button>
-                  ))}
+                  {meetupSelectorItems.map((meetup) => {
+                    const isSelected = displayIndex === meetup.index;
+                    return (
+                      <button
+                        key={meetup.index}
+                        ref={isSelected ? selectedButtonRef : null}
+                        type="button"
+                        onClick={() => handleSelectMeetup(meetup.index)}
+                        className={`rounded-lg px-3 py-2 text-sm font-medium transition-all border ${
+                          isSelected
+                            ? "border-cyber-blue/60 bg-cyber-blue/10 text-cyber-blue"
+                            : "border-white/10 bg-background/30 text-muted-foreground hover:text-foreground hover:border-white/20"
+                        }`}
+                      >
+                        {meetup.filename}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
