@@ -19,6 +19,9 @@ const App = () => (
           <Route path="/about" element={<Index />} />
           <Route path="/meetup" element={<Index />} />
           <Route path="/meetups" element={<Index />} />
+          <Route path="/meetup/:id" element={<Index />} />
+          <Route path="/meetups/:id" element={<Index />} />
+          <Route path="/meetup-*" element={<Index />} />
           <Route path="/photos" element={<Index />} />
           <Route path="/gallery" element={<Index />} />
           <Route path="/activities" element={<Index />} />

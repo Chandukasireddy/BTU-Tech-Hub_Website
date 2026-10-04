@@ -15,14 +15,14 @@ const Index = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // 1. Check hash first (e.g. #meetup, #photos, ?utm_source=...#meetup)
+    // 1. Check hash first (e.g. #meetup, #meetup-20, #photos, ?utm_source=...#meetup)
     let targetId = "";
     if (location.hash) {
       targetId = location.hash.replace(/^#/, "");
     } else {
-      // 2. Check path (e.g. /meetup, /photos, /gallery, etc.)
+      // 2. Check path (e.g. /meetup, /meetup-20, /photos, /gallery, etc.)
       const path = location.pathname.replace(/^\/+|\/+$/g, "").toLowerCase();
-      if (path === "meetup" || path === "meetups") targetId = "meetup";
+      if (path.startsWith("meetup") || path.startsWith("meetups")) targetId = "meetup";
       else if (path === "photos" || path === "gallery") targetId = "photos";
       else if (path === "about") targetId = "about";
       else if (path === "activities") targetId = "activities";
@@ -32,7 +32,9 @@ const Index = () => {
 
     if (targetId) {
       const scrollToTarget = () => {
-        const element = document.getElementById(targetId);
+        const element =
+          document.getElementById(targetId) ||
+          (targetId.toLowerCase().startsWith("meetup") ? document.getElementById("meetup") : null);
         if (element) {
           const navOffset = 70;
           const elementPosition = element.getBoundingClientRect().top + window.scrollY;
