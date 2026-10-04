@@ -258,14 +258,22 @@ export default function MeetupSection() {
       meetupMarkdowns.map(({ filename, content }, index) => {
         const numberMatch = filename.match(/(\d+)/);
         const filenameNumber = numberMatch ? parseInt(numberMatch[1]) : 0;
+        const parsed = parseMeetupDateTime(content);
+        const weekday = parsed?.start
+          ? parsed.start.toLocaleDateString("en-US", { weekday: "long" })
+          : "Sunday";
+        const time = parsed?.start
+          ? parsed.start.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true })
+          : "2:00 PM";
+
         return {
           index,
           filename,
           filenameNumber,
           title: `BTU Tech Hub Meetup - ${filename}`,
           markdown: content,
-          weekday: "Sunday",
-          time: "2:00 PM",
+          weekday,
+          time,
           place: "IKMZ - BTU Cottbus-Senftenberg",
         };
       }),
