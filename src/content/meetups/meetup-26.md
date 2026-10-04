@@ -1,44 +1,65 @@
 # BTU Tech Hub Meetup - 26
 
+![BTU Tech Hub Meetup 26 Banner](/src/content/images-meetup/meetup-26/meetup26-banner.png)
+
 **BTU Tech Hub**
 
-**Sunday, October 04** ,  **2:00 PM - 5:00 PM** **IKMZ - BTU Cottbus-Senftenberg** Cottbus, Brandenburg
+**Sunday, October 04**  
+**2:00 PM - 5:00 PM**  
+**IKMZ - BTU Cottbus-Senftenberg**  
+Cottbus, Brandenburg
 
-**Upcoming Event**
+**Event Completed**
 
-- [Join Discord for Updates](https://discord.gg/NfPSxZKUa8)
-- [Add to Calendar]
+- Record Turnout: 28 Registrations, 20 Attendees
+- Multidisciplinary Participation: Physics, Aeronautical Engineering, Computer Science & more
+- Hands-on Gamified AI Development & Live Project Demos
 
 ## About Event
 
-BTU Tech Hub: 25th Meetup
+BTU Tech Hub: 26th Meetup
 
 **Connect • Learn • Build**
 
-We are back for our 26th session! While we are finalizing the core technical workshop for this week, we continue our mission of exploring high-impact technology and fostering the local builder community.
+Meetup #26 marked our biggest and most energetic session to date, setting a new community record with 28 registrations and 20 passionate participants gathered in the IKMZ library cabins. 
 
-**What to Expect:**
-- **Hands-on Technical Session:** [Topic to be announced - e.g., Agentic Workflows / Advanced RAG / Web3 Integration]
-- **Collaborative Coding:** Bring your laptops and prepare to dive into live implementations.
-- **Project Showcases:** Open floor for members to demonstrate what they’ve been building over the week.
-- **Networking:** Connect with fellow students, developers, and tech enthusiasts at BTU.
+This session stood out for its rich multidisciplinary diversity—bringing together students from Physics, Aeronautical Engineering, Computer Science, and various engineering disciplines. With numerous first-time attendees, the room was filled with fresh perspectives, vibrant discussions, and collaborative energy.
 
-*Stay tuned to our Discord channel for the specific toolset and prerequisites for this session.*
+### Exploring Multimodal LLMs & GPT Architectures
+We kicked off the meetup with a deep dive into modern Large Language Model (LLM) interaction paradigms and architectural capabilities:
+- **Text-to-Text:** Foundational language generation, reasoning prompts, and chain-of-thought workflows.
+- **Image-to-Text:** Vision-language models (VLMs) interpreting visual data, charts, and spatial relationships.
+- **Text-to-Voice:** Speech synthesis, expressive voice generation, and audio synthesis pipelines.
+- **Voice-to-Voice:** Real-time, full-duplex multimodal conversational models enabling natural verbal dialogues.
+
+We then unpacked the core mechanics of Generative Pre-trained Transformers (GPTs), exploring how attention mechanisms work under the hood and examining lightweight, open, and specialized GPT-like architectures that make local experimentation accessible and efficient.
+
+### Hands-On Gamified AI Project
+Moving straight from architectural foundations to hands-on implementation, everyone built an interactive project based on Chandu's Medium guide:
+- **Project Article:** [JEV-Like Model: Learn with Gamified Project](https://medium.com/@chandukasireddy02/jev-like-model-learn-with-gamified-project-3044b83db92f)
+
+Participants built and customized gamified environments to benchmark model behavior and test interactive capabilities in real time:
+- Designing and adapting classic games such as **Nokia Snake**, **Hangman**, trivia challenges, and text-based interactive puzzles.
+- Connecting game logic and prompt loops to explore how models reason, generate adaptive content, and respond to dynamic constraints.
 
 ## Presentations by Participants
 
-*To be updated based on volunteer sign-ups.* > **Interested in presenting?** If you have a project, a new tool, or a research paper you'd like to share, please reach out on Discord to secure a slot!
+Every single participant engaged in live building and participated in our showcase session:
+- **Individual & Team Demos:** Each participant took the floor for a few minutes to showcase their custom game, demonstrate model interactions, and explain their architectural choices.
+- **First-Time Presenters:** New attendees from diverse non-CS streams (including Physics and Aeronautical Engineering) built complete working prototypes and delivered remarkably confident, insightful presentations.
+- **Collaborative Feedback:** The room exchanged ideas on prompt strategies, model edge cases, and future extensions into autonomous agent systems.
 
 ---
 
 **Location Details:** BTU IKMZ Library Basement '-1' floor cabins  
 [Location Instructions](https://btu.mapongo.de/viewer?p=1&b=1&f=13&l=349&lang=en)
 
-**Note:** The meetup happens every Sunday at 2:00 PM at IKMZ Cottbus. Any last-minute changes regarding the room or topic will be discussed on Discord.
+**Note:** The meetup happens every Sunday at 2:00 PM at IKMZ Cottbus. Any last-minute updates regarding rooms or topics are shared on Discord.
 
 ## Location
 
-**IKMZ - BTU Cottbus-Senftenberg** Platz der Deutsche Einheit 2, 03044 Cottbus, Germany  
+**IKMZ - BTU Cottbus-Senftenberg**  
+Platz der Deutsche Einheit 2, 03044 Cottbus, Germany  
 [Interactive Map](https://btu.mapongo.de/viewer?p=1&b=1&f=13&l=349&lang=en)
 
 ## Hosted By
