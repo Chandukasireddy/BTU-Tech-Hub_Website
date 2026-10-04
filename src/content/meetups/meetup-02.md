@@ -28,14 +28,6 @@ Connect Learn Build
 **Overview:** Deep dive into RAG architecture, components, and practical usage patterns.
 Venue shifted to IKMZ Basement (-1) cabins for the technical deep-dive.
 
-BTU IKMZ Library Basement -1 floor cabins
-
-Instructions to location: https://btu.mapongo.de/viewer?p=1&b=1&f=13&l=349&lang=en
-
-Join Discord for updates: https://discord.gg/A6DJSsntT
-
-Note: The meetup happens on every Sunday 2PM at IKMZ Cottbus (any changes will be discussed on discord)
-
 ## Location
 
 **IKMZ - BTU Cottbus-Senftenberg**  

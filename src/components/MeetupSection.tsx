@@ -62,7 +62,7 @@ function resolveMarkdownImageSrc(src: string) {
 }
 
 function renderInlineMarkdown(text: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*|https?:\/\/\S+)/g).filter(Boolean);
+  const parts = text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\)|https?:\/\/\S+)/g).filter(Boolean);
 
   return parts.map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) {
@@ -70,6 +70,22 @@ function renderInlineMarkdown(text: string) {
         <strong key={`bold-${index}`} className="text-foreground font-semibold">
           {part.slice(2, -2)}
         </strong>
+      );
+    }
+
+    const mdLinkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (mdLinkMatch) {
+      const [, linkText, url] = mdLinkMatch;
+      return (
+        <a
+          key={`mdlink-${index}`}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-cyber-blue hover:text-cyber-blue/80 underline underline-offset-4 break-all"
+        >
+          {linkText}
+        </a>
       );
     }
 
@@ -128,6 +144,13 @@ function renderMeetupMarkdown(markdown: string) {
 
     flushList();
 
+    if (trimmedLine === "---" || trimmedLine === "***") {
+      elements.push(
+        <hr key={`hr-${elements.length}`} className="my-6 border-white/10" />
+      );
+      return;
+    }
+
     if (trimmedLine.startsWith("# ")) {
       elements.push(
         <h4 key={`h1-${elements.length}`} className="text-2xl font-bold tracking-tight mb-4">
@@ -142,6 +165,24 @@ function renderMeetupMarkdown(markdown: string) {
         <h5 key={`h2-${elements.length}`} className="text-lg font-semibold mt-7 mb-3 text-cyber-blue">
           {renderInlineMarkdown(trimmedLine.slice(3))}
         </h5>,
+      );
+      return;
+    }
+
+    if (trimmedLine.startsWith("### ")) {
+      elements.push(
+        <h6 key={`h3-${elements.length}`} className="text-base font-semibold mt-5 mb-2 text-foreground">
+          {renderInlineMarkdown(trimmedLine.slice(4))}
+        </h6>,
+      );
+      return;
+    }
+
+    if (trimmedLine.startsWith("#### ")) {
+      elements.push(
+        <h6 key={`h4-${elements.length}`} className="text-sm font-semibold mt-4 mb-2 text-muted-foreground">
+          {renderInlineMarkdown(trimmedLine.slice(5))}
+        </h6>,
       );
       return;
     }

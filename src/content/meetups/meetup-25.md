@@ -29,13 +29,6 @@ We are back for our 25th session! While we are finalizing the core technical wor
 
 *To be updated based on volunteer sign-ups.* > **Interested in presenting?** If you have a project, a new tool, or a research paper you'd like to share, please reach out on Discord to secure a slot!
 
----
-
-**Location Details:** BTU IKMZ Library Basement '-1' floor cabins  
-[Location Instructions](https://btu.mapongo.de/viewer?p=1&b=1&f=13&l=349&lang=en)
-
-**Note:** The meetup happens every Sunday at 2:00 PM at IKMZ Cottbus. Any last-minute changes regarding the room or topic will be discussed on Discord.
-
 ## Location
 
 **IKMZ - BTU Cottbus-Senftenberg** Platz der Deutsche Einheit 2, 03044 Cottbus, Germany  

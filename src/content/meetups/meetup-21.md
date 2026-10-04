@@ -39,14 +39,6 @@ Beyond the hands-on fine-tuning, our members shared valuable insights through sp
 * **Security Vulnerability Scans with LLMs:** An exploration of using LLMs to detect security flaws. This session focused on performing scans within a **sandbox environment**, ensuring safety while leveraging the reasoning power of AI for cybersecurity.
 * **BTU Startup Ecosystem:** We held an engaging discussion regarding the **BTU Startup Hub** and the growing startup ecosystem at BTU, discussing opportunities for tech-driven entrepreneurship.
 
-BTU IKMZ Library Basement '-1' floor cabins
-
-Instructions to location: https://btu.mapongo.de/viewer?p=1&b=1&f=13&l=349&lang=en
-
-Join Discord for updates: https://discord.gg/NfPSxZKUa8
-
-Note: The meetup happens on every Sunday 2PM at IKMZ Cottbus (any changes will be discussed on discord)
-
 ## Location
 
 **IKMZ - BTU Cottbus-Senftenberg** Platz der Deutsche Einheit 2, 03044 Cottbus, Germany  
