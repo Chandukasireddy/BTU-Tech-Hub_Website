@@ -8,7 +8,7 @@ import { parseMeetupDateTime } from "@/lib/meetupParser";
 
 // Dynamically load all markdown files from the meetups folder using Vite's glob
 const meetupModules = import.meta.glob<string>("/src/content/meetups/*.md", { query: "?raw", import: "default", eager: true });
-const meetupBannerModules = import.meta.glob("/src/content/images-meetup/banners/*", { query: "?url", import: "default", eager: true });
+const meetupImageModules = import.meta.glob("/src/content/images-meetup/**/*", { query: "?url", import: "default", eager: true });
 
 // Extract and sort meetup markdowns by numeric part (if exists) and preserve filenames
 const meetupMarkdowns = Object.entries(meetupModules)
@@ -33,11 +33,22 @@ function resolveMarkdownImageSrc(src: string) {
   }
 
   const srcKey = normalized.startsWith("/src/") ? normalized : `/${normalized.replace(/^\/+/, "")}`;
+
+  // Check direct match in images folder
+  const directMatch = meetupImageModules[srcKey];
+  if (typeof directMatch === "string") {
+    return directMatch;
+  }
+  if (directMatch && typeof directMatch === "object" && "default" in directMatch && typeof directMatch.default === "string") {
+    return directMatch.default;
+  }
+
+  // Fallback to banner key replacement
   const bannerKey = srcKey.replace(
     "/src/content/images-meetup/",
     "/src/content/images-meetup/banners/"
   ).replace(/\.(jpe?g|png|webp)$/i, "-banner.jpg");
-  const resolved = meetupBannerModules[bannerKey];
+  const resolved = meetupImageModules[bannerKey];
 
   if (typeof resolved === "string") {
     return resolved;
@@ -414,3 +425,4 @@ export default function MeetupSection() {
     </section>
   );
 }
+
