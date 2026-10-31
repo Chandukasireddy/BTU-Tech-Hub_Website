@@ -14,6 +14,12 @@ import FooterSection from "@/components/FooterSection";
 const Index = () => {
   const location = useLocation();
 
+  // Always land on the hero for a plain visit instead of a restored/shifted scroll position
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+    if (!window.location.hash && window.location.pathname === "/") window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     // 1. Check hash first (e.g. #meetup, #meetup-20, #photos, ?utm_source=...#meetup)
     let targetId = "";

@@ -12,6 +12,27 @@ const floatingIcons = [
 
 const EASE = "easeOut" as const;
 
+const milestonePops = [
+  { x: "8%", y: "30%", size: 28, delay: 0.5 },
+  { x: "80%", y: "35%", size: 36, delay: 1.8 },
+  { x: "15%", y: "55%", size: 22, delay: 3 },
+  { x: "70%", y: "70%", size: 30, delay: 0.9 },
+  { x: "45%", y: "12%", size: 20, delay: 2.4 },
+];
+
+const confettiEmojis = ["🎉", "✨", "🎊", "💙", "💜", "⭐"];
+const confetti = Array.from({ length: 18 }, (_, i) => {
+  const angle = (i / 18) * Math.PI * 2;
+  const dist = 160 + (i % 3) * 70;
+  return {
+    emoji: confettiEmojis[i % confettiEmojis.length],
+    x: Math.cos(angle) * dist,
+    y: Math.sin(angle) * dist * 0.7,
+    rotate: (i % 2 ? 1 : -1) * 180,
+    delay: (i % 6) * 0.05,
+  };
+});
+
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -46,6 +67,20 @@ export default function HeroSection() {
         <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] rounded-full bg-cyber-purple/5 blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-[250px] h-[250px] rounded-full bg-cyber-green/4 blur-3xl" />
       </div>
+
+      {/* Faint "100+" pop-ups in the background */}
+      {milestonePops.map((pop, i) => (
+        <motion.span
+          key={i}
+          className="absolute mono-tag font-bold text-cyber-blue pointer-events-none select-none"
+          style={{ left: pop.x, top: pop.y, fontSize: pop.size }}
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: [0, 0.12, 0], scale: [0.6, 1, 1.1], y: [10, -10, -30] }}
+          transition={{ delay: pop.delay, duration: 4, repeat: Infinity, repeatDelay: 1.5, ease: "easeInOut" }}
+        >
+          100+
+        </motion.span>
+      ))}
 
       {/* Floating icons */}
       {floatingIcons.map((item, i) => (
@@ -134,17 +169,72 @@ export default function HeroSection() {
           className="flex flex-wrap items-center justify-center gap-8 mt-6 text-sm text-muted-foreground"
         >
           {[
-            { icon: <Users className="w-4 h-4 text-cyber-blue" />, label: "Members", value: "70+" },
-            { icon: <Calendar className="w-4 h-4 text-cyber-purple" />, label: "Meetups Held", value: "26+" },
+            { icon: <Users className="w-4 h-4 text-cyber-blue" />, label: "Members", value: "100+", milestone: true },
+            { icon: <Calendar className="w-4 h-4 text-cyber-purple" />, label: "Meetups Held", value: "28+" },
             { icon: <span className="text-cyber-green text-base">🔥</span>, label: "Weekly Sundays", value: "14:00" },
           ].map((stat, i) => (
-            <div key={i} className="flex items-center gap-2">
+            <div
+              key={i}
+              className={`flex items-center gap-2 ${
+                stat.milestone
+                  ? "relative px-3 py-1 rounded-full border border-cyber-blue/40 bg-primary/10 shadow-[0_0_20px_rgba(56,189,248,0.25)]"
+                  : ""
+              }`}
+            >
               {stat.icon}
-              <span className="text-foreground font-bold">{stat.value}</span>
+              <span className={stat.milestone ? "gradient-text font-extrabold" : "text-foreground font-bold"}>
+                {stat.value}
+              </span>
               <span>{stat.label}</span>
+              {stat.milestone && (
+                <motion.span
+                  className="absolute -top-2 -right-2 text-base"
+                  animate={{ rotate: [0, 15, -10, 15, 0], scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2.4, repeat: Infinity, repeatDelay: 1.5 }}
+                >
+                  🎉
+                </motion.span>
+              )}
             </div>
           ))}
         </motion.div>
+
+        {/* Next meetup announcement */}
+        <motion.a
+          variants={itemVariants}
+          href="https://luma.com/calendar/cal-15EeqDt3eUrf1et"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-purple/40 bg-cyber-purple/10 text-sm text-foreground hover:bg-cyber-purple/20 transition-colors"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-cyber-purple opacity-75 animate-ping" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-cyber-purple" />
+          </span>
+          Register for the 29th Meetup
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+        </motion.a>
+
+        {/* Milestone celebration */}
+        <motion.p
+          variants={itemVariants}
+          className="text-base md:text-lg font-semibold tracking-tight gradient-text"
+        >
+          🎉 We are now a community of 100+ builders!
+        </motion.p>
+
+        {/* Confetti burst */}
+        {confetti.map((c, i) => (
+          <motion.span
+            key={i}
+            className="absolute left-1/2 top-1/3 text-xl pointer-events-none select-none"
+            initial={{ opacity: 0, x: 0, y: 0, scale: 0 }}
+            animate={{ opacity: [0, 1, 0], x: c.x, y: c.y, scale: [0, 1.2, 0.8], rotate: c.rotate }}
+            transition={{ delay: 1.2 + c.delay, duration: 1.8, ease: EASE }}
+          >
+            {c.emoji}
+          </motion.span>
+        ))}
       </motion.div>
 
       {/* Scroll indicator */}
