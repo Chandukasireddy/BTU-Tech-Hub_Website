@@ -340,13 +340,15 @@ export default function MeetupSection() {
   const selectedMeetup = meetups[displayIndex] ?? meetups[0];
   const meetupSelectorItems = meetups;
 
-  // Scroll active meetup pill into view horizontally
+  // Scroll active meetup pill into view horizontally, within its own container only
+  // (scrollIntoView also scrolls the page, which pushed visitors past the hero on load)
   useEffect(() => {
-    if (selectedButtonRef.current) {
-      selectedButtonRef.current.scrollIntoView({
+    const button = selectedButtonRef.current;
+    const container = button?.parentElement?.parentElement;
+    if (button && container) {
+      container.scrollTo({
+        left: button.offsetLeft - container.clientWidth / 2 + button.clientWidth / 2,
         behavior: "smooth",
-        block: "nearest",
-        inline: "center",
       });
     }
   }, [displayIndex]);
