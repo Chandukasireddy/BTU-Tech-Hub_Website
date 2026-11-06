@@ -24,7 +24,7 @@ const Blogs = () => {
               <span className="gradient-text">Blogs</span> by the Community
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
-              Meetup recaps, guides, and stories from BTU Tech Hub builders. Want to write one? Every post is an
+              Stories, guides, and updates from BTU Tech Hub builders. Want to write one? Every post is an
               open-source contribution.
             </p>
           </div>
