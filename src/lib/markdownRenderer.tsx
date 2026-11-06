@@ -41,9 +41,17 @@ function resolveMarkdownImageSrc(src: string) {
 }
 
 function renderInlineMarkdown(text: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\)|https?:\/\/\S+)/g).filter(Boolean);
+  const parts = text.split(/(`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\)|https?:\/\/\S+)/g).filter(Boolean);
 
   return parts.map((part, index) => {
+    if (part.length > 2 && part.startsWith("`") && part.endsWith("`")) {
+      return (
+        <code key={`code-${index}`} className="rounded bg-white/5 px-1.5 py-0.5 font-mono text-[0.85em] text-cyber-green">
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
         <strong key={`bold-${index}`} className="text-foreground font-semibold">

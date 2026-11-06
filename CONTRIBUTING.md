@@ -50,6 +50,11 @@ Built something cool during the week or at a hackathon?
 - **Improve UI/UX**: Enhance animations, accessibility, mobile responsiveness, or dark theme styling.
 - **Add features**: Propose new features that help the BTU community stay informed and connected.
 
+### 5. Write a Blog Post
+Share what you learned in the **Blogs** section of the website.
+- Add a markdown file to `src/content/blogs/` with a short frontmatter block (title, date, author, excerpt, tags).
+- Read the full step-by-step guide: [How to Write a Blog Post](https://btu-tech-hub.vercel.app/blogs/how-to-write-a-blog-post).
+
 ---
 
 ## 🚀 Quick Development Setup

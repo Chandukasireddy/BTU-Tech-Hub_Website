@@ -128,6 +128,7 @@ BTU Tech Spark is **100% open source** and community-driven. Everyone is encoura
 - 📝 Add summary notes and takeaways for weekly meetups in `src/content/meetups/`.
 - 📸 Share photos from our sessions in `src/content/images-meetup/`.
 - 🛠️ Add your student side project to the community showcase.
+- ✍️ Write a blog post in `src/content/blogs/`. See [How to Write a Blog Post](https://btu-tech-hub.vercel.app/blogs/how-to-write-a-blog-post).
 - 🎨 Suggest new ideas or improve the website's design and accessibility.
 
 👉 **Read the [Contribution Guide](./CONTRIBUTING.md)** to get started, and check the [Contributor Guide](./CONTRIBUTOR.md) for quick links.
