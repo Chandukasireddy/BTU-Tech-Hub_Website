@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
 
+// Section links point at the homepage so they also work from other pages (e.g. /blogs).
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Meetup", href: "#meetup" },
-  { label: "Photos", href: "#photos" },
-  { label: "Activities", href: "#activities" },
-  { label: "Projects", href: "#projects" },
-  { label: "Join", href: "#community" },
+  { label: "About", href: "/#about" },
+  { label: "Meetup", href: "/#meetup" },
+  { label: "Photos", href: "/#photos" },
+  { label: "Activities", href: "/#activities" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Join", href: "/#community" },
 ];
 
 export default function Navbar() {
@@ -32,26 +35,26 @@ export default function Navbar() {
     >
       <div className="section-container flex items-center justify-between h-16">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
+        <Link to="/" className="flex items-center gap-2 group">
           <div className="relative w-8 h-8 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-150">
             <Zap className="w-4 h-4 text-cyber-blue" />
           </div>
           <span className="font-bold text-base tracking-tight">
             BTU <span className="text-cyber-blue">Tech Hub</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
+              to={link.href}
               className="relative text-sm text-muted-foreground hover:text-foreground transition-colors duration-150 group"
             >
               {link.label}
               <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-cyber-blue group-hover:w-full transition-all duration-200 ease-out" />
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -91,14 +94,14 @@ export default function Navbar() {
           >
             <nav className="flex flex-col px-6 py-4 gap-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={link.href}
                   className="text-sm text-muted-foreground hover:text-cyber-blue transition-colors"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <a
                 href="https://discord.gg/jWHT3fPuHj"

@@ -1,11 +1,12 @@
 import { Zap, ExternalLink, Mail } from "lucide-react";
 
 const footerLinks = [
-  { label: "About", href: "#about" },
-  { label: "Meetup", href: "#meetup" },
-  { label: "Activities", href: "#activities" },
-  { label: "Projects", href: "#projects" },
-  { label: "Why Join", href: "#why-join" },
+  { label: "About", href: "/#about" },
+  { label: "Meetup", href: "/#meetup" },
+  { label: "Activities", href: "/#activities" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Why Join", href: "/#why-join" },
 ];
 
 export default function FooterSection() {
